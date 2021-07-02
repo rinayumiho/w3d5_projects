@@ -39,6 +39,16 @@ class PolyTreeNode
         nil
     end
 
+    def bfs(target)
+        arr = [self]
+        while !arr.empty?
+            cur_node = arr.shift
+            return cur_node if cur_node.value == target
+            arr += cur_node.children
+        end
+        nil
+    end
+
     # private
     attr_reader :value, :children, :parent
 end
