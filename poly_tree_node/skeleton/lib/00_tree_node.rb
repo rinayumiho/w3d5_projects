@@ -20,43 +20,30 @@ class PolyTreeNode
     # end
 
     def parent=(new_parent)
-        # if parent == new_parent
-        #     return parent.children
-        # end
+        if new_parent == parent
+           return parent.children
+        end
 
-        # if parent != nil
-        #     parent.children.each do |child|
-        #         if child.parent != new_parent
-        #             new_parent.children << self
-        #             # parent.children.delete_at(idx)
-        #         end
-        #     end
-        # end
+        if !parent.nil? 
+            parent.children.delete(self)
+        end
 
-        
-        # new_parent
-        # if parent != new_parent
-        #     parent.children.delete(self) if !parent.nil?
-        #     parent = new_parent
-        #     new_parent.children << self
-        # end
-
-        return if parent == new_parent
-        old_parent = parent
         parent = new_parent
-        old_parent.children.delete(self) if !old_parent.nil?
-        parent.children << self
+
+        if !parent.nil?
+            parent.children << self
+        end
 
     end
 
     def add_child(child)
 
-        if !child.parent.nil?
-            raise "parent already exist cannot add child"
-        end
+        # if !child.parent.nil?
+        #     raise "parent already exist cannot add child"
+        # end
 
-        child.parent = self
-        children << child
+        # child.parent = self
+        # children << child
     end
 
     # private
