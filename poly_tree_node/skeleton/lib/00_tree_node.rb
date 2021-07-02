@@ -35,18 +35,24 @@ class PolyTreeNode
 
         
         # new_parent
-        if parent != new_parent
-            parent.children.delete(self) if !parent.nil?
-            parent = new_parent
-            new_parent.children << self
-        end
+        # if parent != new_parent
+        #     parent.children.delete(self) if !parent.nil?
+        #     parent = new_parent
+        #     new_parent.children << self
+        # end
+
+        return if parent == new_parent
+        old_parent = parent
+        parent = new_parent
+        old_parent.children.delete(self) if !old_parent.nil?
+        parent.children << self
 
     end
 
     def add_child(child)
 
         if !child.parent.nil?
-            raise "parent already exisist cannot add child"
+            raise "parent already exist cannot add child"
         end
 
         child.parent = self
