@@ -7,33 +7,40 @@ class PolyTreeNode
         @value = value
     end
 
-    def print_parent
-        puts parent.value
-    end
+    # def print_parent
+    #     puts parent.value
+    # end
 
-    def print_children
-        p children.map { |child| child.value }
-    end
+    # def print_children
+    #     p children.map { |child| child.value }
+    # end
 
-    def print_value
-        value
-    end
+    # def print_value
+    #     value
+    # end
 
     def parent=(new_parent)
-        if parent == new_parent
-            return parent
+        # if parent == new_parent
+        #     return parent.children
+        # end
+
+        # if parent != nil
+        #     parent.children.each do |child|
+        #         if child.parent != new_parent
+        #             new_parent.children << self
+        #             # parent.children.delete_at(idx)
+        #         end
+        #     end
+        # end
+
+        
+        # new_parent
+        if parent != new_parent
+            parent.children.delete(self) if !parent.nil?
+            parent = new_parent
+            new_parent.children << self
         end
 
-        if self.parent != nil
-            parent.children.each_with_index do |child, idx|
-                if child == self
-                    parent.children.delete_at(idx)
-                end
-            end
-        end
-
-        new_parent.children << self
-        new_parent
     end
 
     def add_child(child)
@@ -46,9 +53,6 @@ class PolyTreeNode
         children << child
     end
 
-    def 
-
-    private
-
+    # private
     attr_reader :value, :children, :parent
 end
